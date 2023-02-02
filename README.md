@@ -1,2 +1,2 @@
 # ubcsolar
-Personal programming work for UBC Solar
+Vehicle Dynamics programming work for UBC Solar
