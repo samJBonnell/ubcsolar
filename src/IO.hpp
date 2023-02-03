@@ -21,12 +21,13 @@ bool output(const std::vector<std::vector<double>> data, const std::string& file
     return true;
 }
 
-bool outputData(const std::vector<std::vector<double>>& data, const std::string& fileLocation) {
+template <typename Container>
+bool outputData(const Container& data, const std::string& fileLocation) {
     std::ofstream out(fileLocation);
-    if (!out) return false; // Check if the file could be opened for writing
+    if (!out) return false;
 
     for (const auto& row : data) {
-        std::copy(row.begin(), row.end() - 1, std::ostream_iterator<double>(out, ","));
+        std::copy(row.begin(), row.end() - 1, std::ostream_iterator<typename Container::value_type::value_type>(out, ","));
         out << row.back() << '\n';
     }
 
