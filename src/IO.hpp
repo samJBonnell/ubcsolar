@@ -22,7 +22,6 @@ bool output(const std::vector<std::vector<double>> data, const std::string& file
 }
 
 bool outputData(const std::vector<std::vector<double>>& data, const std::string& fileLocation) {
-    // Use RAII (Resource Acquisition Is Initialization) to automatically close the file when the ofstream object goes out of scope
     std::ofstream out(fileLocation);
     if (!out) return false; // Check if the file could be opened for writing
 
