@@ -21,6 +21,19 @@ bool output(const std::vector<std::vector<double>> data, const std::string& file
     return true;
 }
 
+bool outputData(const std::vector<std::vector<double>>& data, const std::string& fileLocation) {
+    // Use RAII (Resource Acquisition Is Initialization) to automatically close the file when the ofstream object goes out of scope
+    std::ofstream out(fileLocation);
+    if (!out) return false; // Check if the file could be opened for writing
+
+    for (const auto& row : data) {
+        std::copy(row.begin(), row.end() - 1, std::ostream_iterator<double>(out, ","));
+        out << row.back() << '\n';
+    }
+
+    return true;
+}
+
 template <typename T>
 bool writeToFile(T begin, T end, const std::string fileLocation) {
     // Check for empty range
